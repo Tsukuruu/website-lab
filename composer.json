@@ -1,0 +1,14 @@
+{
+  "require": {
+    "vlucas/phpdotenv": "^5.4",
+    "predis/predis": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Config\\": "config/",
+      "Route\\": "route/",
+      "App\\Controllers\\": "app/Controllers/",
+      "App\\Models\\": "app/Models/"
+    }
+  }
+}

@@ -1,16 +1,27 @@
 <?php
-class Db {
-   public function getConnect(){
-      $conn = mysqli_connect("eu-cdbr-west-01.cleardb.com",
-      "b83cf71c9fb28a", "42f8a091", "heroku_0f11ff9a9927f56");
+namespace Config;
 
-      if (!$conn) {
-          echo "Could not connect MySQL.";
-          echo "Error code: " . mysqli_connect_errno();
-          echo "Error message: " . mysqli_connect_error();
-          exit();
-      }
-      return $conn;
-  }
+class Db
+{
+   private $host;
+   private $user;
+   private $password;
+   private $dbName;
+
+   public function __construct()
+   {
+       $this->host = $_ENV['DB_HOST'];
+       $this->password = $_ENV['DB_PASSWORD'];
+       $this->user = $_ENV['DB_USER'];
+       $this->dbName = $_ENV['DB_DATABASE'];
+   }
+
+   public function getConnect() {
+       $conn = mysqli_connect($this->host, $this->user, $this->password, $this->dbName);
+       if (!$conn) {
+           echo "No connection with MySQL." . PHP_EOL;
+           exit();
+       }
+       return $conn;
+   }
 }
-?>
