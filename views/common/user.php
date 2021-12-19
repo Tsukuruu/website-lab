@@ -129,8 +129,8 @@
                 <?php foreach($comments as $comment):?>
                     <div data-comment-id="<?=$comment['id']?>" data-user-id="<?=$user['id']?>" class="comments__comment comment card mt-3">
                         <div class="row g-0">
-                            <div class="col-2">
-                                <!-- <img src="..." class="img-fluid rounded-start" alt="..."> -->
+                            <div class="col-2 justify-content-center align-items-center">
+                            <img src="<?=$user['img_url'] ? $user['img_url'] : 'https://webstudlab.s3.us-east-2.amazonaws.com/anonuser.png'?>" alt="avatar" width="100px" height="100px">   
                             </div>
                             <div class="col-10">
                                 <div class="card-body">
