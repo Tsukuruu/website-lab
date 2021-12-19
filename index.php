@@ -1,16 +1,10 @@
 <?php
 session_start();
 require __DIR__ . '/vendor/autoload.php';
-//For using env variables
-use Dotenv\Dotenv;
-$dotEnv = Dotenv::createImmutable(__DIR__);
-$dotEnv->load();
-
-// $s3 = new Aws\S3\S3Client([
-//     'version'  => '2006-03-01',
-//     'region'   => 'us-east-1',
-// ]);
-// $bucket = $_ENV['S3_BUCKET']?: die('No "S3_BUCKET" config var in found in env!');
+// //For using env variables
+// use Dotenv\Dotenv;
+// $dotEnv = Dotenv::createImmutable(__DIR__);
+// $dotEnv->load();
 
 use Config\Db;
 use Route\Route;
