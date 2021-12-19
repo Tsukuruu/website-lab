@@ -1,12 +1,16 @@
 <?php
+session_start();
 require __DIR__ . '/vendor/autoload.php';
-//Cloud for user images
-require __DIR__ . '/vendor/predis/predis/autoload.php';
-Predis\Autoloader::register();
 //For using env variables
 use Dotenv\Dotenv;
 $dotEnv = Dotenv::createImmutable(__DIR__);
 $dotEnv->load();
+
+// $s3 = new Aws\S3\S3Client([
+//     'version'  => '2006-03-01',
+//     'region'   => 'us-east-1',
+// ]);
+// $bucket = $_ENV['S3_BUCKET']?: die('No "S3_BUCKET" config var in found in env!');
 
 use Config\Db;
 use Route\Route;
