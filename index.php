@@ -1,8 +1,6 @@
 <?php
+session_start();
 require __DIR__ . '/vendor/autoload.php';
-//Cloud for user images
-require __DIR__ . '/vendor/predis/predis/autoload.php';
-Predis\Autoloader::register();
 //For using env variables
 use Dotenv\Dotenv;
 $dotEnv = Dotenv::createImmutable(__DIR__);
