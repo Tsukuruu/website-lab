@@ -63,8 +63,8 @@
             <div class="col p-2 bg-light text-dark border-end text-center">
               <?=$i + 1?>
           </div>
-          <div class="col-2 p-2 bg-light text-dark border-end">
-            <?=$users[$i]['img_url']?>
+          <div class="col-2 p-2 bg-light text-dark border-end text-center">
+          <img src="<?=$users[$i]['img_url'] ? $users[$i]['img_url'] : 'https://webstudlab.s3.us-east-2.amazonaws.com/anonuser.png'?>" alt="avatar" width="100px" height="100px">
           </div>
           <div class="col-2 p-2 bg-light text-dark border-end">
             <?=$users[$i]['name']?>

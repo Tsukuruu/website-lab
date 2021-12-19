@@ -3,6 +3,7 @@ namespace app\Controllers;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Comment;
+use Aws\S3\S3Client;
 
 class UserController
 {
@@ -106,14 +107,38 @@ class UserController
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $role_id = filter_input(INPUT_POST, 'role', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $role_id = $role_id ? $_role_id : (new User())::byId($this->conn, $id)['role_id'];
+        $role_id = $role_id ? $role_id : (new User())::byId($this->conn, $id)['role_id'];
+
+        if(!getimagesize($_FILES['avatar']['tmp_name']) || $_FILES['avatar']['size'] > 500000){
+            header("Location: ?controller=user&id=" . $id);
+            return;
+        }
+        
+        $s3 = new S3Client([
+            'version'  => '2006-03-01',
+            'region'   => $_ENV['S3_REGION'],
+            'credentials' => [
+                'key'    => $_ENV['AWS_ACCESS_KEY_ID'],
+                'secret' => $_ENV['AWS_SECRET_ACCESS_KEY'],
+            ],
+        ]);
+
+        $upload = $s3->putObject([
+            'Bucket' => $_ENV['S3_BUCKET'],
+            'Key' => $_FILES['avatar']['name'],
+            'SourceFile' => $_FILES['avatar']['tmp_name'],
+            'ContentType' => 'image'
+        ]);
+
+        $img_url = "https://". $_ENV['S3_BUCKET'].".s3.".$_ENV['S3_REGION'].".amazonaws.com/".$_FILES['avatar']['name'];
 
         $data = [
             'name' => $name,
             'surname' => $surname,
             'email' => $email,
             'password'=> $password,
-            'role_id'=> $role_id
+            'role_id'=> $role_id,
+            'img_url' => $img_url
         ];
         if (trim($id) !== "" && is_numeric($id)) {
             (new User())::update($this->conn, $id, $data);

@@ -22,7 +22,7 @@
           <div class="container w-25">
               <div class="row">
                   <div class="col">
-
+                  <img src="<?=$user['img_url'] ? $user['img_url'] : 'https://webstudlab.s3.us-east-2.amazonaws.com/anonuser.png'?>" alt="avatar" width="200px" height="200px">
                   </div>
               </div>
               <div class="row">

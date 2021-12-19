@@ -24,21 +24,24 @@
         </div>
       </nav>
       <h1 class="text-center text-muted mt-3">User page</h1>
+      <form class="form" action="?controller=user&action=update" method="post" enctype="multipart/form-data">
       <div class="container d-flex justify-content-start mt-3 p-3">
           <div class="container w-25">
               <div class="row">
                   <div class="col">
-
+                    <img src="<?=$user['img_url'] ? $user['img_url'] : 'https://webstudlab.s3.us-east-2.amazonaws.com/anonuser.png'?>" alt="avatar" width="200px" height="200px">
                   </div>
               </div>
               <div class="row">
                 <div class="col">
-                    
+                <div class="mt-3">
+                    <label for="formFile" class="form-label">Upload photo:</label>
+                    <input class="form-control" type="file" name="avatar" id="formFile">
+                </div>
                 </div>
             </div>
           </div>
           <div class="container w-50">
-            <form class="form" action="?controller=user&action=update" method="post">
                 <input type="hidden" name="id" value="<?=$user['id']?>">
                 <div class="row mb-4">
                     <div class="col">
@@ -78,9 +81,9 @@
                             <button type="submit" class="btn btn-dark">Update</button>
                     </div>
                 </div>
-            </form>
           </div>
         </div>
+        </form>
         <div class="comments container p-3">
             <h3 class="comments__heading text-muted text-left mt-4">Comments</h3>
             <form class="comments__form form mt-3 text-end" action="?controller=comment&action=add" method="post">
@@ -91,7 +94,7 @@
             </form>
             <div class="container-fluid comments__comments px-0">
                 <?php foreach($comments as $comment):?>
-                    <div data-comment-id="<?=$comment['id']?>" data-user-id="<?=$user['id']?>" class="comments__comment comment card mt-3">
+                    <div data-comment-id="<?=$comment['id']?>" data-user-id="<?=$user['id']?>" class="comments__comment comment card mt-3 shadow pb-2">
                         <div class="row g-0">
                             <div class="col-2">
                                 <!-- <img src="..." class="img-fluid rounded-start" alt="..."> -->
