@@ -1,10 +1,10 @@
 <?php
 session_start();
 require __DIR__ . '/vendor/autoload.php';
-// //For using env variables
-// use Dotenv\Dotenv;
-// $dotEnv = Dotenv::createImmutable(__DIR__);
-// $dotEnv->load();
+//For using env variables
+use Dotenv\Dotenv;
+$dotEnv = Dotenv::createImmutable(__DIR__);
+$dotEnv->load();
 
 use Config\Db;
 use Route\Route;
