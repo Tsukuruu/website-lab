@@ -26,22 +26,25 @@
         </div>
       </nav>
       <h1 class="text-center text-muted mt-3">User page</h1>
+      <?php if($_SESSION['user_id'] == $user['id']):?>
+      <form class="form" action="?controller=user&action=update" method="post" enctype="multipart/form-data">
       <div class="container d-flex justify-content-start mt-3 p-3">
           <div class="container w-25">
               <div class="row">
                   <div class="col">
-                  <img src="<?=$user['img_url'] ? $user['img_url'] : 'https://webstudlab.s3.us-east-2.amazonaws.com/anonuser.png'?>" alt="avatar" width="200px" height="200px">
+                    <img src="<?=$user['img_url'] ? $user['img_url'] : 'https://webstudlab.s3.us-east-2.amazonaws.com/anonuser.png'?>" alt="avatar" width="200px" height="200px">
                   </div>
               </div>
               <div class="row">
                 <div class="col">
-                    
+                <div class="mt-3">
+                    <label for="formFile" class="form-label">Upload photo:</label>
+                    <input class="form-control" type="file" name="avatar" id="formFile">
+                </div>
                 </div>
             </div>
           </div>
           <div class="container w-50">
-            <?php if($_SESSION['user_id'] == $user['id']):?>
-            <form class="form" action="?controller=user&action=update" method="post">
                 <input type="hidden" name="id" value="<?=$user['id']?>">
                 <div class="row mb-4">
                     <div class="col">
@@ -66,7 +69,7 @@
                 <div class="row mb-4">
                     <div class="col">
                         <select class="form-select" aria-label="select-role" disabled>
-                        <option selected value="<?=$user['role_id']?>"><?=$role_titles[$user['role_id']]?></option>
+                        <option selected value="<?=$user['role_id']?>"><?=$user['title']?></option>
                         <?php foreach ($roles as $role):?>
                             <?php if($role['id'] == $user['role_id']):?>
                             <?php else:?>
@@ -81,9 +84,27 @@
                             <button type="submit" class="btn btn-dark">Update</button>
                     </div>
                 </div>
+            </div>
+            </div>
             </form>
             <?php else:?>
-                <form class="form">
+            <form class="form">
+            <div class="container d-flex justify-content-start mt-3 p-3">
+            <div class="container w-25">
+              <div class="row">
+                  <div class="col">
+                    <img src="<?=$user['img_url'] ? $user['img_url'] : 'https://webstudlab.s3.us-east-2.amazonaws.com/anonuser.png'?>" alt="avatar" width="200px" height="200px">
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                <div class="mt-3">
+                    
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="container w-50">
                 <input type="hidden" name="id" value="<?=$user['id']?>">
                 <div class="row mb-4">
                     <div class="col">
