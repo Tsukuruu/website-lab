@@ -76,7 +76,7 @@
             <?=$users[$i]['email']?>
           </div>
           <div class="col-2 p-2 bg-light text-dark border-end">
-            <?=$role_titles[$users[$i]['role_id']]?>
+            <?=$users[$i]['title']?>
           </div>
         </div>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

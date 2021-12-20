@@ -59,7 +59,7 @@
           </div>
         </div>
         <?php for ($i = 0; $i < count($users); $i++):?>
-        <div data-search="<?=$users[$i]['name']?> <?=$users[$i]['surname']?>" class="row border users__user">
+        <div data-search="<?=$users[$i]['name']?> <?=$users[$i]['surname']?>"  class="row border users__user">
             <div class="col p-2 bg-light text-dark border-end text-center">
             <a href="?controller=user&id=<?=$users[$i]['id']?>"><?=$i + 1?></a>
           </div>
@@ -76,7 +76,7 @@
             <?=$users[$i]['email']?>
           </div>
           <div class="col-2 p-2 bg-light text-dark border-end">
-            <?=$role_titles[$users[$i]['role_id']]?>
+            <?=$users[$i]['title']?>
           </div>
         </div>
         <?php endfor;?>
