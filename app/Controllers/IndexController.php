@@ -17,12 +17,6 @@ class IndexController{
        $users = (new User())::all($this->conn);
        $roles = (new Role())::all($this->conn);
 
-       //for displaying role title in the table by user role id
-       $role_titles = [];
-       foreach($roles as $role){
-           $role_titles[$role['id']] = $role['title'];
-       }
-
        if(array_key_exists('auth', $_SESSION)){
             switch($_SESSION['role']){
                 case 'common':

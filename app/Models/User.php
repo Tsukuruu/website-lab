@@ -55,7 +55,7 @@ class User {
  
   
     public static function all($conn) {
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT users.id, `name`, `surname`, `email`, `password`, `img_url`, `role_id`, `title` FROM `users` LEFT JOIN `roles` ON `role_id` = roles.id";
         $result = $conn->query($sql); //виконання запиту
         if ($result->num_rows > 0) {
             $arr = [];
@@ -69,7 +69,7 @@ class User {
     }
  
     public static function byId($conn, $id){
-        $sql = "SELECT * FROM users WHERE id = $id";
+        $sql = "SELECT users.id, `name`, `surname`, `email`, `password`, `img_url`, `role_id`, `title` FROM `users` LEFT JOIN `roles` ON `role_id` = roles.id WHERE users.id = $id";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
          return $result->fetch_assoc();

@@ -103,7 +103,7 @@
                 <div class="row mb-4">
                     <div class="col">
                         <select class="form-select" name="role" aria-label="select-role" disabled>
-                        <option selected value="<?=$user['role_id']?>"><?=$role_titles[$user['role_id']]?></option>
+                        <option selected value="<?=$user['role_id']?>"><?=$user['title']?></option>
                         <?php foreach ($roles as $role):?>
                             <?php if($role['id'] == $user['role_id']):?>
                             <?php else:?>

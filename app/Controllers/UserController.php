@@ -24,13 +24,7 @@ class UserController
            return;
        }
 
-       $roles = (new Role())::all($this->conn);
-        //for displaying role title in the table by user role id
-        $role_titles = [];
-        foreach($roles as $role){
-            $role_titles[$role['id']] = $role['title'];
-        }
-
+        $roles = (new Role())::all($this->conn);
         $comments = (new Comment())::byReceiverId($this->conn, $id);
 
        if(!array_key_exists('auth', $_SESSION)){
@@ -66,11 +60,6 @@ class UserController
                 $users = (new User())::all($this->conn);
                 $roles = (new Role())::all($this->conn);
      
-                //for displaying role title in the table by user role id
-                $role_titles = [];
-                foreach($roles as $role){
-                    $role_titles[$role['id']] = $role['title'];
-                }
                include_once 'views/admin/home.php';
            }else{
              include_once 'views/unauthorized/signup.php';
