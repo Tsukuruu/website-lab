@@ -31,12 +31,6 @@ class UserController
             $role_titles[$role['id']] = $role['title'];
         }
 
-        $users = (new User())::all($this->conn);
-        $usernames = [];
-        foreach($users as $u){
-            $usernames[$u['id']] = $u['name'] . " " . $u['surname'];
-        }
-
         $comments = (new Comment())::byReceiverId($this->conn, $id);
 
        if(!array_key_exists('auth', $_SESSION)){

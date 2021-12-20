@@ -69,7 +69,7 @@ class Comment{
    }
 
    public static function byReceiverId($conn, $id){
-    $sql = "SELECT * FROM comments WHERE receiver_id = $id";
+    $sql = "SELECT comments.id, `author_id`, `receiver_id`, `text`, `date`, `name`, `surname` FROM `comments` LEFT JOIN users ON comments.author_id = users.id WHERE `receiver_id` = $id";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $arr = [];

@@ -134,7 +134,7 @@
                             </div>
                             <div class="col-10">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?=$usernames[$comment['author_id']]?></h5>
+                                    <h5 class="card-title"><?=$comment['name'] . " " . $comment['surname']?></h5>
                                     <p class="card-text comment__text mb-2"><?=$comment['text']?></p>
                                     <p class="card-text"><small class="text-muted comment__date">
                                         <?=substr($comment['date'], 0, -3)?></small>
