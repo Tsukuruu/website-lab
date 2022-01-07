@@ -1,2 +1,2 @@
-# Simple monolith web-application 
+# Simple monolith web-application using MVC architecture
 
